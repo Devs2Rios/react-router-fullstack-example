@@ -1,24 +1,26 @@
 import { useState, useEffect } from "react";
-import EventsList from '../components/EventsList';
+import { useParams } from "react-router-dom";
+import EventItem from "../components/EventItem";
 
-export default function EventsPage() {
-    const [events, setEvents] = useState([]),
+export default function EventDetail() {
+    const { eventId } = useParams(),
+        [event, setEvent] = useState(null),
         [isLoading, setIsLoading] = useState(true),
-        [error, setError] = useState(null);
+        [error, setError] = useState(null);;
 
     useEffect(() => {
         (
             async () => {
                 setIsLoading(true);
-                await fetch("http://localhost:8080/events")
+                await fetch(`http://localhost:8080/events/${eventId}`)
                     .then((res) => {
                         if (res.ok) return res.json();
-                        setError('Couldn\'t fetch events');
+                        setError('Couldn\'t fetch event');
                     })
                     .then((data) => {
                         setError(null);
                         setIsLoading(false);
-                        setEvents(data.events);
+                        setEvent(data.event);
                     })
                     .catch((err) => {
                         setIsLoading(false);
@@ -26,9 +28,9 @@ export default function EventsPage() {
                     });
             }
         )();
-    }, []);
+    }, [eventId]);
 
     if (isLoading) return <p>Loading...</p>;
     if (error) return <p>Error: {error}</p>;
-    return <EventsList events={events} />;
+    return <EventItem event={event} />;
 }

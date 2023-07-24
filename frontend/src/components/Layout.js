@@ -7,7 +7,9 @@ export default function App() {
     return (
         <>
             <MainNavigation />
-            <Outlet />
+            <main>
+                <Outlet />
+            </main>
         </>
     );
 }
