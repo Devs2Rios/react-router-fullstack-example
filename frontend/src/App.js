@@ -12,13 +12,13 @@
 //    - [x] /events/<some-id> => EventDetailPage
 //    - [x] /events/new => NewEventPage
 //    - [x] /events/<some-id>/edit => EditEventPage
-// 3. [ ] Add a root layout that adds the <MainNavigation> component above all page components
-// 4. [ ] Add properly working links to the MainNavigation
-// 5. [ ] Ensure that the links in MainNavigation receive an "active" class when active
-// 6. [ ] Output a list of dummy events to the EventsPage
+// 3. [x] Add a root layout that adds the <MainNavigation> component above all page components
+// 4. [x] Add properly working links to the MainNavigation
+// 5. [x] Ensure that the links in MainNavigation receive an "active" class when active
+// 6. [x] Output a list of dummy events to the EventsPage
 //        Every list item should include a link to the respective EventDetailPage
-// 7. [ ] Output the ID of the selected event on the EventDetailPage
-// BONUS: Add another (nested) layout route that adds the <EventNavigation> component above all /events... page components
+// 7. [x] Output the ID of the selected event on the EventDetailPage
+// [x] BONUS: Add another (nested) layout route that adds the <EventNavigation> component above all /events... page components
 
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import HomePage from './pages/HomePage';
@@ -27,17 +27,28 @@ import NewEventPage from './pages/NewEventPage';
 import EventDetailPage from './pages/EventDetailPage';
 import EditEventPage from './pages/EditEventPage';
 import NotFound from './pages/NotFound';
+import Layout from './components/Layout';
+import EventsNavigation from './components/EventsNavigation';
+
+
 
 const router = createBrowserRouter([
   {
     path: '/',
+    element: <Layout />,
     errorElement: <NotFound />,
     children: [
       { index: true, element: <HomePage /> },
-      { path: 'events', element: <EventsPage /> },
-      { path: 'events/new', element: <NewEventPage /> },
-      { path: 'events/:eventId', element: <EventDetailPage /> },
-      { path: 'events/:eventId/edit', element: <EditEventPage /> },
+      {
+        path: 'events',
+        element: <EventsNavigation />,
+        children: [
+          { index: true, element: <EventsPage /> },
+          { path: 'new', element: <NewEventPage /> },
+          { path: ':eventId', element: <EventDetailPage /> },
+          { path: ':eventId/edit', element: <EditEventPage /> },
+        ]
+      },
     ]
   }
 ]);
