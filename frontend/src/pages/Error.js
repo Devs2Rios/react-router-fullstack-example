@@ -30,7 +30,7 @@ export default function NotFound() {
             return { title, message: errorMessage ?? message };
         };
 
-    const { title, message } = handleError(error.status, error.data);
+    const { title, message } = handleError(error.status, error.data.message);
 
     return (
         <>
