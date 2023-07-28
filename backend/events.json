@@ -1,11 +1,1 @@
-{
-  "events": [
-    {
-      "id": "e1",
-      "title": "A dummy event",
-      "date": "2023-02-22",
-      "image": "https://blog.hubspot.de/hubfs/Germany/Blog_images/Optimize_Marketing%20Events%20DACH%202021.jpg",
-      "description": "Join this amazing event and connect with fellow developers."
-    }
-  ]
-}
+{"events":[{"id":"bb576952-ccb3-4e54-80a4-545063e0da92","title":"Tecate Pal Norte","image":"https://www.infobae.com/new-resizer/2YjEZTyTilGP64EnlF_0b9OFaLo=/768x432/filters:format(webp):quality(85)/cloudfront-us-east-1.images.arcpublishing.com/infobae/3AULFUYJSJDPNHQHQZJWQF535Q.jpg","date":"2023-11-01","description":"El festival musical más popular del norte de México"},{"id":"e1","title":"A dummy event","date":"2023-02-22","image":"https://blog.hubspot.de/hubfs/Germany/Blog_images/Optimize_Marketing%20Events%20DACH%202021.jpg","description":"Join this amazing event and connect with fellow developers."}]}
