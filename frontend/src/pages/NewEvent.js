@@ -22,7 +22,7 @@ export async function action({ request }) {
             date: data.get('date'),
             description: data.get('description'),
         };
-    console.log(eventData);
+
     const response = await fetch('http://localhost:8080/events', {
         method: 'POST',
         headers: {
@@ -30,6 +30,10 @@ export async function action({ request }) {
         },
         body: JSON.stringify(eventData)
     });
+
+    if (response.status === 422) {
+        return response;
+    }
 
     if (!response.ok) {
         // Works the same for actions and loaders
